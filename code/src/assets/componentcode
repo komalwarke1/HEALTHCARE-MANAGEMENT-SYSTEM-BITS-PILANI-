@@ -1,0 +1,58 @@
+
+//CIRCULAR.jsx code
+// src/component/Circular.jsx
+import React from 'react';
+
+// Import all images directly
+import orthopedicImage from '../assets/orthopedic.jpeg';
+import ayurvedaImage from '../assets/ayurveda.jpeg';
+import primaryImage from '../assets/primarycare.jpeg';
+import neurologistImage from '../assets/neurologist.jpeg';
+import cardiologyImage from '../assets/cardiology.jpeg';
+import dermatologyImage from '../assets/dermatologist.jpeg';
+import surgeryImage from '../assets/surgery.jpeg';
+import dentistryImage from '../assets/dentist.jpeg';
+import phyisotherpistImage from '../assets/phyisotherpist.jpeg';
+
+// Map doctor types to their respective images
+const doctorImages = {
+  Orthopedic: orthopedicImage,
+  Ayurveda: ayurvedaImage,
+  'Regular Checkup': primaryImage,
+  Neurologist: neurologistImage,
+  Cardiologist: cardiologyImage,
+  Dermatologist: dermatologyImage,
+  Surgery: surgeryImage,
+  Dentisty: dentistryImage,
+  Physiotherpist: phyisotherapistImage,
+};
+
+const Circular = ({ doctorType }) => {
+  const image = doctorImages[doctorType]; // Get the image based on doctor type
+
+  return (
+    <div className="flex flex-col items-center bg-white border border-gray-200 shadow-lg rounded-xl p-4 w-40">
+      {/* Square Box Container */}
+      <div className="w-32 h-32 bg-gray-100 flex justify-center items-center rounded-xl mb-3">
+        {/* Circular Image */}
+        <div className="w-28 h-28 rounded-full overflow-hidden">
+          <img
+            src={image}
+            alt={doctorType}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      {/* Doctor Type Name */}
+      <h3 className="text-sm font-semibold text-gray-800 text-center">{doctorType}</h3>
+
+      {/* Connect Button */}
+      <button className="mt-2 bg-blue-600 text-white py-1 px-4 rounded-full hover:bg-blue-700 transition-all">
+        Connect
+      </button>
+    </div>
+  );
+};
+
+export default Circular;
