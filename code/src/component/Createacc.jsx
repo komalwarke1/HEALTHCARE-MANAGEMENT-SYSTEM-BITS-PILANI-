@@ -4,8 +4,15 @@ import {
   Stethoscope, ClipboardList, Hospital, AlertCircle,
   Calendar, User, Phone, MapPin, Activity
 } from 'lucide-react';
+import { auth } from './firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { db } from './firebase';
+import { setDoc, doc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'; // Import react-toastify
 
 const Createacc = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -49,10 +56,42 @@ const Createacc = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      console.log('Form submitted:', formData);
+
+    if (!validateForm()) {
+      return;
+    }
+
+    const { email, password, firstName, lastName, dateOfBirth, gender, phone, address, bloodGroup } = formData;
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      const user = auth.currentUser;
+      console.log(user);
+      if (user) {
+        await setDoc(doc(db, "users", user.uid), {
+          email: user.email,
+          firstName,
+          lastName,
+          dateOfBirth,
+          gender,
+          phone,
+          address,
+          bloodGroup,
+        });
+        console.log("Data saved to Firestore"); // Add this line for debugging
+        // navigate("/login"); // Redirect to profile page
+      }
+      console.log("Account created successfully");
+      toast.success("Account created successfully , Now LOGIN", {
+        position: "top-center",
+      });
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.message, {
+        position: "bottom-center",
+      });
     }
   };
 

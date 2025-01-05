@@ -7,6 +7,9 @@ import BookAppointmentPage from './pages/BookPage'
 import {createBrowserRouter,RouterProvider,BrowserRouter,Routes,Route} from 'react-router-dom'
 import ChatconsulationPage from './pages/ChatconsulationPage'
 import PatientProfile from './pages/PatientProfile'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Make sure to include the CSS file
+
 
 
 
@@ -24,7 +27,9 @@ function App() {
         <Route path='/ForgotPassword' element={<ForgotPassword/>}/>
         <Route path='/Chatconsulation' element={<ChatconsulationPage/>}/>
         <Route path='/PatientProfile' element={<PatientProfile/>}/>
+        <Route path='/Home' element={<Home/>} />
       </Routes>
+      <ToastContainer/>
     </BrowserRouter>
     
      

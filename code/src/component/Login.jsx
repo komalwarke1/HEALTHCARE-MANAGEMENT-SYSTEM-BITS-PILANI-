@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Mail, Lock, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify'; // Import toast
+import { auth } from './firebase'; // Import auth from your Firebase configuration
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,16 +35,22 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!validateForm()) return;
 
     setIsLoading(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      // If login is successful, navigate to home page
-      navigate('/');
+      await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      console.log("Login Successful");
+      toast.success("Login successful!", {
+        position: "top-center",
+      });
+      navigate('/PatientProfile');
     } catch (error) {
-      setErrors({ api: 'Login failed. Please try again.' });
+      console.log(error.message);
+      toast.error(error.message, {
+        position: "bottom-center",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -177,4 +186,3 @@ const Login = () => {
 };
 
 export default Login;
-
