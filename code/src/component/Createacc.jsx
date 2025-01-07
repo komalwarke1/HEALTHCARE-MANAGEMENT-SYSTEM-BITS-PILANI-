@@ -1,29 +1,41 @@
-import React, { useState } from 'react';
-import { 
-  Mail, Lock, Eye, EyeOff, ArrowRight, Heart, 
-  Stethoscope, ClipboardList, Hospital, AlertCircle,
-  Calendar, User, Phone, MapPin, Activity
-} from 'lucide-react';
-import { auth } from './firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { db } from './firebase';
-import { setDoc, doc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'; // Import react-toastify
+import React, { useState } from "react";
+import {
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  Heart,
+  Stethoscope,
+  ClipboardList,
+  Hospital,
+  AlertCircle,
+  Calendar,
+  User,
+  Phone,
+  MapPin,
+  Activity,
+} from "lucide-react";
+import { auth } from "./firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "./firebase";
+import { setDoc, doc } from "firebase/firestore";
+import { useNavigate,Link } from "react-router-dom";
+import { toast } from "react-toastify"; // Import react-toastify
 
 const Createacc = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
-    gender: '',
-    phone: '',
-    email: '',
-    address: '',
-    bloodGroup: '',
-    password: '',
-    confirmPassword: ''
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    gender: "",
+    phone: "",
+    email: "",
+    address: "",
+    bloodGroup: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -32,24 +44,35 @@ const Createacc = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
-    setErrors(prev => ({ ...prev, [name]: '' }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validateForm = () => {
     const newErrors = {};
-    const required = ['firstName', 'lastName', 'dateOfBirth', 'phone', 'email', 
-                     'address', 'password', 'confirmPassword'];
-    
-    required.forEach(field => {
-      if (!formData[field]) newErrors[field] = `${field.replace(/([A-Z])/g, ' $1').trim()} is required`;
+    const required = [
+      "firstName",
+      "lastName",
+      "dateOfBirth",
+      "phone",
+      "email",
+      "address",
+      "password",
+      "confirmPassword",
+    ];
+
+    required.forEach((field) => {
+      if (!formData[field])
+        newErrors[field] = `${field
+          .replace(/([A-Z])/g, " $1")
+          .trim()} is required`;
     });
 
     if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
+      newErrors.confirmPassword = "Passwords do not match";
     }
 
     setErrors(newErrors);
@@ -63,7 +86,17 @@ const Createacc = () => {
       return;
     }
 
-    const { email, password, firstName, lastName, dateOfBirth, gender, phone, address, bloodGroup } = formData;
+    const {
+      email,
+      password,
+      firstName,
+      lastName,
+      dateOfBirth,
+      gender,
+      phone,
+      address,
+      bloodGroup,
+    } = formData;
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -95,11 +128,13 @@ const Createacc = () => {
     }
   };
 
-  const renderField = (name, label, type = 'text', icon, placeholder) => (
+  const renderField = (name, label, type = "text", icon, placeholder) => (
     <div className="space-y-2">
       <label className="block text-gray-700 font-medium">{label}</label>
       <div className="relative">
-        {icon && <span className="absolute left-3 top-3 text-orange-400">{icon}</span>}
+        {icon && (
+          <span className="absolute left-3 top-3 text-orange-400">{icon}</span>
+        )}
         <input
           name={name}
           type={type}
@@ -129,7 +164,9 @@ const Createacc = () => {
             <div className="text-center space-y-2">
               <div className="flex justify-center items-center gap-2">
                 <Hospital className="w-8 h-8 text-orange-500" />
-                <h1 className="text-3xl font-bold text-orange-600">Patient Portal</h1>
+                <h1 className="text-3xl font-bold text-orange-600">
+                  Patient Portal
+                </h1>
                 <Stethoscope className="w-6 h-6 text-orange-400" />
               </div>
               <div className="flex items-center justify-center gap-2 text-gray-600 font-medium">
@@ -138,12 +175,34 @@ const Createacc = () => {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space grid grid-cols-1 md:grid-cols-2 gap-6">
-              {renderField('firstName', 'First Name', 'text', <User className="h-5 w-5" />, 'First Name')}
-              {renderField('lastName', 'Last Name', 'text', <User className="h-5 w-5" />, 'Last Name')}
-              {renderField('dateOfBirth', 'Date of Birth', 'date', <Calendar className="h-5 w-5" />)}
+            <form
+              onSubmit={handleSubmit}
+              className="space grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              {renderField(
+                "firstName",
+                "First Name",
+                "text",
+                <User className="h-5 w-5" />,
+                "First Name"
+              )}
+              {renderField(
+                "lastName",
+                "Last Name",
+                "text",
+                <User className="h-5 w-5" />,
+                "Last Name"
+              )}
+              {renderField(
+                "dateOfBirth",
+                "Date of Birth",
+                "date",
+                <Calendar className="h-5 w-5" />
+              )}
               <div className="space-y-2">
-                <label className="block text-gray-700 font-medium">Gender</label>
+                <label className="block text-gray-700 font-medium">
+                  Gender
+                </label>
                 <select
                   name="gender"
                   value={formData.gender}
@@ -157,14 +216,48 @@ const Createacc = () => {
                   <option value="other">Other</option>
                 </select>
               </div>
-              {renderField('phone', 'Phone Number', 'tel', <Phone className="h-5 w-5" />, '+91 XXXXXXXXX')}
-              {renderField('email', 'Email Address', 'email', <Mail className="h-5 w-5" />, 'name@example.com')}
-              {renderField('address', 'Address', 'text', <MapPin className="h-5 w-5" />, '123 Street Name, City, State')}
-              {renderField('bloodGroup', 'Blood Group', 'text', <Activity className="h-5 w-5" />, 'Blood group')}
-              {renderField('password', 'Password', showPassword ? 'text' : 'password', 
-                <Lock className="h-5 w-5" />, 'Create a secure password')}
-              {renderField('confirmPassword', 'Confirm Password', showConfirmPassword ? 'text' : 'password', 
-                <Lock className="h-5 w-5" />, 'Confirm your password')}
+              {renderField(
+                "phone",
+                "Phone Number",
+                "tel",
+                <Phone className="h-5 w-5" />,
+                "+91 XXXXXXXXX"
+              )}
+              {renderField(
+                "email",
+                "Email Address",
+                "email",
+                <Mail className="h-5 w-5" />,
+                "name@example.com"
+              )}
+              {renderField(
+                "address",
+                "Address",
+                "text",
+                <MapPin className="h-5 w-5" />,
+                "123 Street Name, City, State"
+              )}
+              {renderField(
+                "bloodGroup",
+                "Blood Group",
+                "text",
+                <Activity className="h-5 w-5" />,
+                "Blood group"
+              )}
+              {renderField(
+                "password",
+                "Password",
+                showPassword ? "text" : "password",
+                <Lock className="h-5 w-5" />,
+                "Create a secure password"
+              )}
+              {renderField(
+                "confirmPassword",
+                "Confirm Password",
+                showConfirmPassword ? "text" : "password",
+                <Lock className="h-5 w-5" />,
+                "Confirm your password"
+              )}
 
               <button
                 type="submit"
@@ -180,10 +273,13 @@ const Createacc = () => {
 
             <div className="text-center">
               <p className="text-gray-600 text-sm">
-                Already have an account?{' '}
-                <a href="/login" className="font-medium text-orange-500 hover:text-orange-600">
-                  Login in
-                </a>
+                Already have an account?{" "}
+                <Link
+                  to="/login"
+                  className="font-medium text-orange-500 hover:text-orange-600"
+                >
+                  Login
+                </Link>
               </p>
               <p className="mt-4 text-gray-500 text-sm flex items-center justify-center gap-2">
                 <Heart className="w-4 h-4 text-orange-400" />

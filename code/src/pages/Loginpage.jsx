@@ -11,6 +11,7 @@ import {
   ArrowRight,
   Phone
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Loginpage = () => {
   return (
@@ -125,10 +126,10 @@ const Loginpage = () => {
                 <div className="mt-8 pt-6 border-t border-gray-100">
                   <div className="flex items-center justify-center gap-2 text-gray-500">
                     <span>First time here?</span>
-                    <a href="/signup" className="text-blue-600 font-medium hover:text-blue-700 inline-flex items-center group">
+                    <Link to="/signup" className="text-blue-600 font-medium hover:text-blue-700 inline-flex items-center group">
                       Create your account
                       <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
