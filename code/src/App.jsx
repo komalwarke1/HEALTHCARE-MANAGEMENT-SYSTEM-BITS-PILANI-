@@ -9,6 +9,7 @@ import ChatconsulationPage from './pages/ChatconsulationPage'
 import PatientProfile from './pages/PatientProfile'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Make sure to include the CSS file
+import LocationPage from './pages/LocationPage'
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/Chatconsulation' element={<ChatconsulationPage/>}/>
         <Route path='/PatientProfile' element={<PatientProfile/>}/>
         <Route path='/Home' element={<Home/>} />
+        <Route path='/LoactionPage' element={<LocationPage/>}/>
       </Routes>
       <ToastContainer/>
     </BrowserRouter>
