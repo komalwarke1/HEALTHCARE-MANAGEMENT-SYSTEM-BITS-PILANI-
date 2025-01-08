@@ -32,6 +32,7 @@ function App() {
         <Route path='/LoactionPage' element={<LocationPage/>}/>
       </Routes>
       <ToastContainer/>
+      {/* <LocationIQMap/> */}
     </BrowserRouter>
     
      
