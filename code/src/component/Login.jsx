@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Mail, Lock, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { toast } from 'react-toastify'; // Import toast
-import { auth } from './firebase'; // Import auth from your Firebase configuration
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'; // Import GoogleAuthProvider and signInWithPopup
+import { toast } from 'react-toastify';
+import { auth } from './firebase';
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -53,6 +53,24 @@ const Login = () => {
       });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("Google Sign-In Successful");
+      toast.success("Google Sign-In successful!", {
+        position: "top-center",
+      });
+      navigate('/PatientProfile');
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.message, {
+        position: "bottom-center",
+      });
     }
   };
 
@@ -177,6 +195,14 @@ const Login = () => {
           )}
         </button>
       </form>
+
+      <button
+        type="button"
+        onClick={handleGoogleSignIn}
+        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold text-lg py-2 rounded-lg mt-4"
+      >
+        Sign in with Google
+      </button>
 
       {errors.api && (
         <p className="mt-4 text-sm text-red-500 text-center" role="alert">{errors.api}</p>
