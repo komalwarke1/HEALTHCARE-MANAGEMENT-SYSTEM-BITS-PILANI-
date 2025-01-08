@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Calendar, Clock, User, Stethoscope, Mail, Phone, Heart, CheckCircle } from 'lucide-react';
 import Navbar from '../component/Navbar';
 import Footer1 from '../component/Footer';
-import AppointmentScheduler from '../component/Bookappointment';
+
 import { useAuth } from '../AuthContext';
+import Bookappointment from '../Bookappointmentpages/Bookappointment';
+import LoginPrompt from '../component/LoginPrompt';
 
 const BookAppointmentPage = () => {
   const {isLogin} = useAuth();
@@ -13,7 +15,7 @@ const BookAppointmentPage = () => {
         <Navbar/>
 
       <main>
-      {isLogin?(<AppointmentScheduler/>):(<LoginPrompt/>)}
+      {isLogin?(<Bookappointment/>):(<LoginPrompt/>)}
         <div className=" bg-white rounded-xl shadow-2xl p-12 text-center">
           <h3 className="text-3xl font-bold text-orange-900 mb-8">Why Choose MediCare?</h3>
           <div className="grid md:grid-cols-3 gap-8">

@@ -3,6 +3,7 @@ import Navbar from '../component/Navbar'
 import ChatLayout from '../component/ChatLayout'
 import Footer1 from '../component/Footer'
 import { useAuth } from '../AuthContext'
+import LoginPrompt from '../component/LoginPrompt'
 
 
 
