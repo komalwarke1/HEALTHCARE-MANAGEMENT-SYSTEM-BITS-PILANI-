@@ -13,7 +13,7 @@ const Navbar = () => {
   const navigationItems = [
     { id: 'home', label: 'Home', path: '/' },
     { id: 'appointment', label: 'Book Appointment', path: '/appointment' },
-    { id: 'location', label: 'Location', path:'/LoacationPage'  },
+    { id: 'location', label: 'Location', path:'/LocationIQMap'  },
     { id: 'consultation', label: 'Chat Consultation', path: '/Chatconsulation' }
   ];
 

@@ -25,7 +25,7 @@ const ProfileButton = () => {
           label: 'Notifications',
           description: '3 new messages',
           badge: 3,
-          action: () => Navigate('/PatientProfile')
+          action: () => Navigate('/')
         },
       ]
     },
@@ -36,13 +36,13 @@ const ProfileButton = () => {
           icon: <Calendar size={16} />,
           label: 'Appointments',
           description: 'View your schedule',
-          action: () => Navigate('/PatientProfile')
+          action: () => Navigate('/appointment')
         },
         {
           icon: <MessageSquare size={16} />,
           label: 'Messages',
           description: 'Chat with your doctor',
-          action: () => Navigate('/PatientProfile')
+          action: () => Navigate('/Chatconsulation')
         },
         {
           icon: <Settings size={16} />,
@@ -54,7 +54,7 @@ const ProfileButton = () => {
           icon: <HelpCircle size={16} />,
           label: 'Help & Support',
           description: 'Get assistance',
-          action: () => Navigate('/PatientProfile')
+          action: () => Navigate('/')
         },
       ]
     }
