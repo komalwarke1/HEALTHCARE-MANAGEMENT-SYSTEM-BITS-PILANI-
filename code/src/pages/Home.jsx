@@ -4,8 +4,13 @@ import VideoBackground from '../component/VideoBackground'
 import ArticleSlider from '../component/ArticalSlider'
 import DoctorSpecialties from '../component/DoctorSpecialties'
 import Footer1 from '../component/Footer'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  const navigate = useNavigate();
+  const handleFindClick = () => {
+    navigate('/LocationIQMap');
+  };
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
       {/* Navbar Section */}
@@ -52,7 +57,7 @@ const Home = () => {
             Schedule your appointment today and take the first step towards better health
           </p>
           <div className="flex justify-center gap-4">
-            <button className="bg-white text-orange-500 hover:bg-orange-50 font-semibold px-8 py-3 rounded-full transition-all duration-300 shadow-lg">
+            <button onClick={handleFindClick} className="bg-white text-orange-500 hover:bg-orange-50 font-semibold px-8 py-3 rounded-full transition-all duration-300 shadow-lg">
               Find a Doctor
             </button>
             <button className="bg-orange-600 text-white hover:bg-orange-700 font-semibold px-8 py-3 rounded-full transition-all duration-300 shadow-lg">

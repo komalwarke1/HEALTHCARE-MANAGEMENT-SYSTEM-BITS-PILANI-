@@ -32,7 +32,7 @@ function App() {
         <Route path='/LocationIQMap' element={<LocationIQMap/>}/>
       </Routes>
       <ToastContainer/>
-      <LocationIQMap/>
+      
     </BrowserRouter>
     
      

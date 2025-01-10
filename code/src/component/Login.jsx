@@ -199,7 +199,9 @@ const Login = () => {
       <button
         type="button"
         onClick={handleGoogleSignIn}
-        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold text-lg py-2 rounded-lg mt-4"
+        className="w-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 
+                   hover:from-yellow-500 hover:via-orange-600 hover:to-red-600 
+                   text-white font-semibold text-lg py-2 rounded-lg  mt-4"
       >
         Sign in with Google
       </button>
