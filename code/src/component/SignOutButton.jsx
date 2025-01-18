@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { LogOut, Loader2 } from 'lucide-react';
 import { useAuth } from '../AuthContext';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const SignOutButton = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { signOut } = useAuth();
+  const navigate = useNavigate()
 
   const handleSignOut = async () => {
     setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 1000));
     signOut();
     setIsLoading(false);
+    navigate('/login');
+    
   };
 
   return (

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { getFirestore, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const ProfileContext = createContext();
 const db = getFirestore();
@@ -10,16 +10,28 @@ export const ProfileProvider = ({ children }) => {
   const [patientInfo, setpatientInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
 
+  // Listen for auth state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setIsLoading(false);
+    });
+
+    // Cleanup subscription
+    return () => unsubscribe();
+  }, []);
+
+  // Fetch profile after auth state is confirmed
   useEffect(() => {
     const fetchProfile = async () => {
-      try {
-        const user = auth.currentUser;
-        if (!user) {
-          setError("User not authenticated");
-          return;
-        }
+      if (!user) {
+        setpatientInfo(null);
+        return;
+      }
 
+      try {
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
 
@@ -39,23 +51,19 @@ export const ProfileProvider = ({ children }) => {
       } catch (error) {
         console.error("Error fetching profile data:", error);
         setError(error.message);
-      } finally {
-        setIsLoading(false);
       }
     };
 
     fetchProfile();
-  }, []);
+  }, [user]);
 
   const updateProfile = async (profileData) => {
+    if (!user) {
+      throw new Error("User not authenticated");
+    }
+
     try {
       setIsLoading(true);
-      const user = auth.currentUser;
-      
-      if (!user) {
-        throw new Error("User not authenticated");
-      }
-
       const docRef = doc(db, "users", user.uid);
       await updateDoc(docRef, {
         ...profileData,
@@ -76,14 +84,12 @@ export const ProfileProvider = ({ children }) => {
   };
 
   const refreshProfile = async () => {
+    if (!user) {
+      throw new Error("User not authenticated");
+    }
+
     try {
       setIsLoading(true);
-      const user = auth.currentUser;
-      
-      if (!user) {
-        throw new Error("User not authenticated");
-      }
-
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
 
@@ -103,7 +109,8 @@ export const ProfileProvider = ({ children }) => {
     isLoading,
     error,
     updateProfile,
-    refreshProfile
+    refreshProfile,
+    user
   };
 
   return <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>;
