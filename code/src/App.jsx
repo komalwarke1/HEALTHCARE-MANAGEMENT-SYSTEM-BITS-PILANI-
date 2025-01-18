@@ -10,6 +10,7 @@ import PatientProfile from './pages/PatientProfile'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Make sure to include the CSS file
 import LocationIQMap from './pages/LocationIQMap'
+import { ProfileProvider } from './ProfileProvider'
 
 
 
@@ -19,7 +20,9 @@ function App() {
 
   return (
     <>
+    <ProfileProvider>
       <BrowserRouter>
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/appointment" element={<BookAppointmentPage />} />
@@ -33,8 +36,8 @@ function App() {
       </Routes>
       <ToastContainer/>
       
-    </BrowserRouter>
-    
+      </BrowserRouter>
+    </ProfileProvider>
      
 
     </>

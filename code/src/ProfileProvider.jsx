@@ -27,7 +27,7 @@ export const ProfileProvider = ({ children }) => {
           setpatientInfo(docSnap.data());
         } else {
           console.log("No such document!");
-          // Optionally create a default profile
+          
           const defaultProfile = {
             userId: user.uid,
             email: user.email,

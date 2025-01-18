@@ -31,7 +31,7 @@ const PatientProfile = () => {
   }
 
   if (!patientInfo) {
-    return <div>No profile data available</div>;
+    return <div>{error}</div>;
   }
 
 
