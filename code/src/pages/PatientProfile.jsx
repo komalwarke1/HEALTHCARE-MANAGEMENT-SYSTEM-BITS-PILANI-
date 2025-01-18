@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Avatar } from "../Profilepage/Avatar";
 import { Button } from "../Profilepage/Button";
@@ -14,23 +14,26 @@ import { Calendar, Phone, Mail, MapPin, AlertCircle } from 'lucide-react';
 import { Appointments } from "../Profilepage/Appointment";
 import { MedicalRecords } from "../Profilepage/MedicalRecords";
 import Navbar from "../component/Navbar";
+import { useProfile } from "../ProfileProvider";
+import LoadingPage from "./LoadingPage";
+
 
 const PatientProfile = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+ 
+  const [loading, setLoading] = useState(true);
+  const { patientInfo, isLoading, error, updateProfile } = useProfile();
+  console.log(patientInfo);
 
-  const patientInfo = {
-    name: "Vedant Bulbule",
-    id: "Patient",
-    age: 21,
-    gender: "Male",
-    birthdate: "2004-05-15",
-    phoneNumber: "+91 91309 12390",
-    email: "VedantBulbule@example.com",
-    address: "123 Main St, Anytown,  12345",
-    bloodType: "A+",
-    
-  };
+  if (isLoading) {
+    return <LoadingPage/>;
+  }
+
+  if (!patientInfo) {
+    return <div>No profile data available</div>;
+  }
+
 
   const tabContent = {
     overview: (
@@ -87,16 +90,17 @@ const PatientProfile = () => {
           <div className="flex flex-col md:flex-row items-center md:items-start justify-between">
             <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6">
               <Avatar
-                src="/src/assets/userprofile.svg"
-                alt={patientInfo.name}
-                fallback={patientInfo.name.split(' ').map(n => n[0]).join('')}
+                src={patientInfo.photoURL}
+                alt={patientInfo.firstName}
+                fallback={patientInfo.firstName}
                 className="h-24 w-24 rounded-full border-4 border-blue-500"
+                
               />
               <div className="text-center md:text-left">
                 <div className="flex items-center space-x-2">
-                  <h1 className="text-3xl font-bold text-gray-800">{patientInfo.name}</h1>
+                  <h1 className="text-3xl font-bold text-gray-800">{patientInfo.firstName+" "+patientInfo.lastName}</h1>
                   <Badge variant="outline" className="text-blue-600 border-blue-600">
-                    {patientInfo.id}
+                    Patient
                   </Badge>
                 </div>
                 <div className="mt-2 space-y-1">

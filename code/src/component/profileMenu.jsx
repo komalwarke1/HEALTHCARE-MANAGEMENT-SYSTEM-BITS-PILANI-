@@ -1,13 +1,14 @@
 import React from "react";
+import { useProfile } from "../ProfileProvider";
 
 const ProfileMenu = ({ profile }) => {
-  const { name, role, menuItems } = profile;
+  const { patientInfo } = useProfile;
 
   return (
     <div className="max-w-md mx-auto mt-10 bg-white rounded-lg shadow-lg p-6">
       {/* Profile Header */}
       <div className="text-center mb-6">
-        <h2 className="text-xl font-bold text-gray-800">{name}</h2>
+        <h2 className="text-xl font-bold text-gray-800">{patientInfo.firstName}</h2>
         <p className="text-sm text-gray-500">{role}</p>
       </div>
 

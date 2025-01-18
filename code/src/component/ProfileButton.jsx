@@ -5,9 +5,11 @@ import {
 } from 'lucide-react';
 import SignOutButton from './SignOutButton';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useProfile } from '../ProfileProvider';
 
 const ProfileButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {patientInfo} = useProfile();
   const Navigate = useNavigate();
 
   const menuSections = [
@@ -121,7 +123,7 @@ const ProfileButton = () => {
                 <User size={24} className="text-orange-500" />
               </div>
               <div className="flex flex-col">
-                <span className="text-white font-semibold">Vedant Bulbule</span>
+                <span className="text-white font-semibold">{patientInfo.firstName+" "+patientInfo.lastName}</span>
                 <span className="text-orange-100 text-sm">Patient</span>
               </div>
             </div>

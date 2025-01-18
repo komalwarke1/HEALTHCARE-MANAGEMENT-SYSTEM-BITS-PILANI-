@@ -1,17 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import { Input } from './Input';
 import { Select } from './Select';
 import { Textarea } from './Textarea';
 import { Avatar } from './Avatar';
+import { useProfile } from '../ProfileProvider';
+
 
 export const EditProfileForm = ({ onClose }) => {
-  const [avatar, setAvatar] = useState('/placeholder.svg');
+  const { patientInfo, updateProfile, isLoading } = useProfile();
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    dateOfBirth: '',
+    gender: 'male',
+    bloodType: 'o_positive',
+    address: '',
+    allergies: '',
+    medicalHistory: '',
+    photoURL: '/placeholder.svg'
+  });
 
-  const handleSubmit = (e) => {
+  // Initialize form with user profile data
+  useEffect(() => {
+    if (patientInfo) {
+      setFormData({
+        fullName: patientInfo.firstName+" "+patientInfo.lastName || '',
+        email: patientInfo.email || '',
+        phone: patientInfo.phone || '',
+        dateOfBirth: patientInfo.dateOfBirth || '',
+        gender: patientInfo.gender || 'male',
+        bloodType: patientInfo.bloodType || 'o_positive',
+        address: patientInfo.address || '',
+        allergies: patientInfo.allergies || '',
+        medicalHistory: patientInfo.medicalHistory || '',
+        photoURL: patientInfo.photoURL || '/placeholder.svg'
+      });
+    }
+  }, [patientInfo]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    onClose();
+    try {
+      await updateProfile(formData);
+      onClose();
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
   };
 
   const handleAvatarChange = (e) => {
@@ -19,7 +63,10 @@ export const EditProfileForm = ({ onClose }) => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAvatar(reader.result);
+        setFormData(prev => ({
+          ...prev,
+          photoURL: reader.result
+        }));
       };
       reader.readAsDataURL(file);
     }
@@ -28,8 +75,13 @@ export const EditProfileForm = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <h2 className="text-2xl font-bold mb-6 text-white">Edit Profile</h2>
+      
       <div className="flex items-center space-x-4">
-        <Avatar src={avatar} alt="Profile Picture" className="h-20 w-20 text-white" />
+        <Avatar 
+          src={formData.photoURL} 
+          alt="Profile Picture" 
+          className="h-20 w-20 text-white" 
+        />
         <div>
           <input
             type="file"
@@ -46,24 +98,51 @@ export const EditProfileForm = ({ onClose }) => {
           </label>
         </div>
       </div>
+
       <div className="grid md:grid-cols-2 gap-4">
-        <Input label="Full Name" id="fullName" defaultValue="Vedant Bulbule" />
-        <Input label="Email" id="email" type="email" defaultValue="VedantBulbule@example.com" />
-        <Input label="Phone Number" id="phone" type="tel" defaultValue="+91 91309 12390" />
-        <Input label="Date of Birth" id="dateOfBirth" type="date" defaultValue="2004-05-15" />
+        <Input
+          label="Full Name"
+          id="fullName"
+          value={formData.fullName}
+          onChange={handleInputChange}
+        />
+        <Input
+          label="Email"
+          id="email"
+          type="email"
+          value={formData.email}
+          onChange={handleInputChange}
+        />
+        <Input
+          label="Phone Number"
+          id="phone"
+          type="tel"
+          value={formData.phone}
+          onChange={handleInputChange}
+        />
+        <Input
+          label="Date of Birth"
+          id="dateOfBirth"
+          type="date"
+          value={formData.dateOfBirth}
+          onChange={handleInputChange}
+        />
         <Select
           label="Gender"
           id="gender"
+          value={formData.gender}
+          onChange={handleInputChange}
           options={[
             { value: 'male', label: 'Male' },
             { value: 'female', label: 'Female' },
             { value: 'other', label: 'Other' },
           ]}
-          defaultValue="male"
         />
         <Select
           label="Blood Type"
           id="bloodType"
+          value={formData.bloodType}
+          onChange={handleInputChange}
           options={[
             { value: 'a_positive', label: 'A+' },
             { value: 'a_negative', label: 'A-' },
@@ -74,32 +153,46 @@ export const EditProfileForm = ({ onClose }) => {
             { value: 'ab_positive', label: 'AB+' },
             { value: 'ab_negative', label: 'AB-' },
           ]}
-          defaultValue="o_positive"
         />
       </div>
+
       <Textarea
         label="Address"
         id="address"
-        defaultValue="123 Medical Center Drive, Healthcare City, HC 12345"
+        value={formData.address}
+        onChange={handleInputChange}
       />
       <Textarea
         label="Allergies"
         id="allergies"
+        value={formData.allergies}
+        onChange={handleInputChange}
         placeholder="List any allergies..."
-        defaultValue="Penicillin"
       />
       <Textarea
         label="Medical History"
         id="medicalHistory"
+        value={formData.medicalHistory}
+        onChange={handleInputChange}
         placeholder="Brief medical history..."
       />
+
       <div className="flex justify-end gap-4">
-        <Button type="button" variant="outline" onClick={onClose}>
+        <Button 
+          type="button" 
+          variant="outline" 
+          onClick={onClose}
+          disabled={isLoading}
+        >
           Cancel
         </Button>
-        <Button type="submit">Save Changes</Button>
+        <Button 
+          type="submit"
+          disabled={isLoading}
+        >
+          {isLoading ? 'Saving...' : 'Save Changes'}
+        </Button>
       </div>
     </form>
   );
 };
-
