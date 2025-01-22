@@ -1,14 +1,33 @@
-# Healthcare-Management-System
+# Healthcare Management System
 
-How to Run:
-1. Clone the repository:
-     https://github.com/komalwarke1/HEALTHCARE-MANAGEMENT-SYSTEM-BITS-PILANI-.git
-2. Navigate to the Project directory:
-      cd code
-3. install dependencies:
-     npm install
-4. Start the development server:
-     npm run dev
-5.  Open your browser and visit:
-     http://localhost:5173
-    or any appropriate port
+Advanced healthcare management solution developed for BITS Pilani.
+
+## Installation
+
+### Prerequisites
+- Node.js (Latest LTS version)
+- npm (Node Package Manager)
+
+### Setup Steps
+1. Clone the repository
+```bash
+git clone https://github.com/komalwarke1/HEALTHCARE-MANAGEMENT-SYSTEM-BITS-PILANI-.git
+```
+
+2. Navigate to project directory
+```bash
+cd code
+```
+
+3. Install dependencies
+```bash
+npm install
+```
+
+4. Start development server
+```bash
+npm run dev
+```
+
+5. Access the application at [http://localhost:5173](http://localhost:5173)
+
