@@ -1,27 +1,15 @@
 import React, { useState } from "react";
 import {
-  Mail,
-  Lock,
-  Eye,
-  EyeOff,
-  ArrowRight,
-  Heart,
-  Stethoscope,
-  ClipboardList,
-  Hospital,
-  AlertCircle,
-  Calendar,
-  User,
-  Phone,
-  MapPin,
-  Activity,
+  Mail, Lock, Eye, EyeOff, ArrowRight, Heart, Stethoscope,
+  ClipboardList, Hospital, AlertCircle, Calendar, User,
+  Phone, MapPin, Activity
 } from "lucide-react";
 import { auth } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "./firebase";
 import { setDoc, doc } from "firebase/firestore";
-import { useNavigate,Link } from "react-router-dom";
-import { toast } from "react-toastify"; // Import react-toastify
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Createacc = () => {
   const navigate = useNavigate();
@@ -101,7 +89,6 @@ const Createacc = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       const user = auth.currentUser;
-      console.log(user);
       if (user) {
         await setDoc(doc(db, "users", user.uid), {
           email: user.email,
@@ -113,10 +100,8 @@ const Createacc = () => {
           address,
           bloodGroup,
         });
-        console.log("Data saved to Firestore"); // Add this line for debugging
-        // navigate("/login"); // Redirect to profile page
+        console.log("Data saved to Firestore");
       }
-      console.log("Account created successfully");
       toast.success("Account created successfully , Now LOGIN", {
         position: "top-center",
       });
@@ -133,7 +118,7 @@ const Createacc = () => {
       <label className="block text-gray-700 font-medium">{label}</label>
       <div className="relative">
         {icon && (
-          <span className="absolute left-3 top-3 text-orange-400">{icon}</span>
+          <span className="absolute left-3 top-3 text-teal-500">{icon}</span>
         )}
         <input
           name={name}
@@ -141,9 +126,9 @@ const Createacc = () => {
           placeholder={placeholder}
           value={formData[name]}
           onChange={handleChange}
-          className="w-full pl-10 h-12 bg-white border border-orange-200 text-gray-800 
-                   placeholder:text-gray-400 focus:border-orange-400 focus:ring-1 
-                   focus:ring-orange-400 rounded-lg outline-none"
+          className="w-full pl-10 h-12 bg-white border border-teal-200 text-gray-800 
+                   placeholder:text-gray-400 focus:border-teal-400 focus:ring-1 
+                   focus:ring-teal-400 rounded-lg outline-none"
         />
       </div>
       {errors[name] && (
@@ -160,17 +145,16 @@ const Createacc = () => {
       <div className="w-full max-w-2xl">
         <div className="bg-white border rounded-lg shadow-lg">
           <div className="p-8 space-y-8">
-            {/* Header */}
             <div className="text-center space-y-2">
               <div className="flex justify-center items-center gap-2">
-                <Hospital className="w-8 h-8 text-orange-500" />
-                <h1 className="text-3xl font-bold text-orange-600">
+                <Hospital className="w-8 h-8 text-teal-500" />
+                <h1 className="text-3xl font-bold text-blue-600">
                   Patient Portal
                 </h1>
-                <Stethoscope className="w-6 h-6 text-orange-400" />
+                <Stethoscope className="w-6 h-6 text-teal-500" />
               </div>
               <div className="flex items-center justify-center gap-2 text-gray-600 font-medium">
-                <ClipboardList className="w-4 h-4 text-orange-400" />
+                <ClipboardList className="w-4 h-4 text-teal-500" />
                 Create your Account
               </div>
             </div>
@@ -207,8 +191,8 @@ const Createacc = () => {
                   name="gender"
                   value={formData.gender}
                   onChange={handleChange}
-                  className="w-full pl-3 h-12 bg-white border border-orange-200 text-gray-800 
-                         focus:border-orange-400 focus:ring-1 focus:ring-orange-400 rounded-lg outline-none"
+                  className="w-full pl-3 h-12 bg-white border border-teal-200 text-gray-800 
+                         focus:border-teal-400 focus:ring-1 focus:ring-teal-400 rounded-lg outline-none"
                 >
                   <option value="">Select Gender</option>
                   <option value="male">Male</option>
@@ -261,8 +245,8 @@ const Createacc = () => {
 
               <button
                 type="submit"
-                className="md:col-span-2 w-full h-12 bg-gradient-to-r from-orange-400 to-orange-500 
-                         hover:from-orange-500 hover:to-orange-600 text-white font-medium rounded-lg"
+                className="md:col-span-2 w-full h-12 bg-gradient-to-r from-blue-400 to-teal-500 
+                         hover:from-blue-500 hover:to-teal-600 text-white font-medium rounded-lg"
               >
                 <span className="flex items-center justify-center gap-2">
                   Create Account
@@ -276,13 +260,13 @@ const Createacc = () => {
                 Already have an account?{" "}
                 <Link
                   to="/login"
-                  className="font-medium text-orange-500 hover:text-orange-600"
+                  className="font-medium text-teal-500 hover:text-teal-600"
                 >
                   Login
                 </Link>
               </p>
               <p className="mt-4 text-gray-500 text-sm flex items-center justify-center gap-2">
-                <Heart className="w-4 h-4 text-orange-400" />
+                <Heart className="w-4 h-4 text-teal-500" />
                 Your health journey starts here
               </p>
             </div>

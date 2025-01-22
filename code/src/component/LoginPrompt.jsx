@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 const LoginPrompt = () => {
   const navigation = useNavigate();
   
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-4 animate-gradient bg-[length:400%_400%]">
-      <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl p-8 w-full max-w-md border border-white/20 shadow-2xl 
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-teal-500 to-green-500 p-4 animate-gradient bg-[length:400%_400%]">
+      <div className="relative bg-white/20 rounded-2xl p-8 w-full max-w-md border border-white/20 shadow-2xl 
                     animate-slide-up hover:shadow-3xl transition-all duration-500">
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 rounded-2xl animate-pulse" />
         <div className="relative text-center">
@@ -31,10 +30,10 @@ const LoginPrompt = () => {
           <p className="text-lg text-white/80 mb-10 animate-fade-in-delay">Sign in to continue </p>
           <button
             onClick={() => navigation('/login')}
-            className="group w-full bg-white/20 backdrop-blur text-white py-4 px-6 rounded-xl
+            className="group w-full bg-white/20 text-white py-4 px-6 rounded-xl
                      font-bold text-lg tracking-wide
                      transition-all duration-300 ease-in-out
-                     hover:bg-white hover:text-indigo-600
+                     hover:bg-white hover:text-blue-600
                      transform hover:-translate-y-1 hover:shadow-xl animate-shimmer
                      focus:outline-none focus:ring-4 focus:ring-white/50"
           >
@@ -54,7 +53,7 @@ const LoginPrompt = () => {
             <span>Don't have an account? </span>
             <button 
               onClick={() => navigation('/signup')}
-              className="text-white font-semibold hover:text-pink-200 transition-colors ml-1 animate-pulse"
+              className="text-white font-semibold hover:text-blue-200 transition-colors ml-1 animate-pulse"
             >
               Create Your Account
             </button>

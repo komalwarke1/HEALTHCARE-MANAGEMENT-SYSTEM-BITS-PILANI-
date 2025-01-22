@@ -83,7 +83,7 @@ const PatientProfile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-green-100">
       <header className="bg-white shadow-lg">
         <Navbar/>
         <div className="container mx-auto px-4 py-6">
@@ -123,7 +123,7 @@ const PatientProfile = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-1 py-1">
         <Tabs
           activeTab={activeTab}
           onTabChange={setActiveTab}
@@ -151,7 +151,9 @@ const PatientProfile = () => {
       </footer>
 
       <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
+        
         <EditProfileForm onClose={() => setIsEditModalOpen(false)} />
+        
       </Modal>
     </div>
   );

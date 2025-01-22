@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { 
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import {
   Heart,
   Brain,
   Baby,
@@ -18,15 +18,14 @@ import {
   Bone,
   Wind,
   Pill,
-  Microscope
-} from 'lucide-react';
-import { use } from 'react';
+  Microscope,
+} from "lucide-react"
 
 const DoctorSpecialties = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedCard, setSelectedCard] = useState(null);
-  const cardsPerPage = 3;
-  const navigate = useNavigate();
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [selectedCard, setSelectedCard] = useState(null)
+  const cardsPerPage = 3
+  const navigate = useNavigate()
 
   const specialties = [
     {
@@ -40,7 +39,7 @@ const DoctorSpecialties = () => {
       rating: 4.9,
       patients: "1.2k+",
       experience: "15+ years",
-      availability: "Mon, Wed, Fri"
+      availability: "Mon, Wed, Fri",
     },
     {
       title: "Neurologist",
@@ -53,7 +52,7 @@ const DoctorSpecialties = () => {
       rating: 4.8,
       patients: "980+",
       experience: "12+ years",
-      availability: "Tue, Thu, Sat"
+      availability: "Tue, Thu, Sat",
     },
     {
       title: "Pediatrician",
@@ -66,7 +65,7 @@ const DoctorSpecialties = () => {
       rating: 4.9,
       patients: "2.1k+",
       experience: "10+ years",
-      availability: "Mon-Sat"
+      availability: "Mon-Sat",
     },
     {
       title: "Ophthalmologist",
@@ -79,7 +78,7 @@ const DoctorSpecialties = () => {
       rating: 4.7,
       patients: "850+",
       experience: "8+ years",
-      availability: "Mon, Wed, Thu"
+      availability: "Mon, Wed, Thu",
     },
     {
       title: "Orthopedist",
@@ -92,7 +91,7 @@ const DoctorSpecialties = () => {
       rating: 4.8,
       patients: "1.5k+",
       experience: "14+ years",
-      availability: "Tue-Sat"
+      availability: "Tue-Sat",
     },
     {
       title: "Pulmonologist",
@@ -105,7 +104,7 @@ const DoctorSpecialties = () => {
       rating: 4.9,
       patients: "1.1k+",
       experience: "11+ years",
-      availability: "Mon-Fri"
+      availability: "Mon-Fri",
     },
     {
       title: "Endocrinologist",
@@ -118,7 +117,7 @@ const DoctorSpecialties = () => {
       rating: 4.8,
       patients: "950+",
       experience: "13+ years",
-      availability: "Mon, Tue, Thu"
+      availability: "Mon, Tue, Thu",
     },
     {
       title: "Dermatologist",
@@ -131,7 +130,7 @@ const DoctorSpecialties = () => {
       rating: 4.7,
       patients: "1.3k+",
       experience: "9+ years",
-      availability: "Wed-Sat"
+      availability: "Wed-Sat",
     },
     {
       title: "Pathologist",
@@ -144,78 +143,73 @@ const DoctorSpecialties = () => {
       rating: 4.9,
       patients: "750+",
       experience: "16+ years",
-      availability: "Mon-Fri"
-    }
-  ];
+      availability: "Mon-Fri",
+    },
+  ]
 
   const nextSlide = () => {
-    setActiveIndex((prev) => 
-      prev + cardsPerPage >= specialties.length ? 0 : prev + cardsPerPage
-    );
-  };
+    setActiveIndex((prev) => (prev + cardsPerPage >= specialties.length ? 0 : prev + cardsPerPage))
+  }
 
   const prevSlide = () => {
-    setActiveIndex((prev) => 
-      prev - cardsPerPage < 0 ? Math.max(0, specialties.length - cardsPerPage) : prev - cardsPerPage
-    );
-  };
+    setActiveIndex((prev) =>
+      prev - cardsPerPage < 0 ? Math.max(0, specialties.length - cardsPerPage) : prev - cardsPerPage,
+    )
+  }
 
   const handleCardClick = (index) => {
-    setSelectedCard(selectedCard === index ? null : index);
-  };
+    setSelectedCard(selectedCard === index ? null : index)
+  }
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-4xl font-bold mb-2 text-gray-800 text-center">Medical Specialists</h1>
-      <p className="text-gray-600 mb-8 text-center max-w-2xl mx-auto">
+    <div className="p-6 bg-gradient-to-r from-blue-50 to-green-50 rounded-3xl shadow-2xl">
+      <h1 className="text-5xl font-bold mb-4 text-gray-800 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600">
+        Medical Specialists
+      </h1>
+      <p className="text-gray-600 mb-12 text-center max-w-3xl mx-auto text-lg">
         Discover our network of specialized healthcare professionals dedicated to providing expert medical care.
       </p>
 
       <div className="relative max-w-6xl mx-auto px-4">
-        <button 
+        <button
           onClick={prevSlide}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 bg-white p-2 rounded-full shadow-lg z-10 hover:bg-gray-50"
+          className="absolute left-0 top-1/2 -translate-y-1/2 -ml-6 bg-white p-3 rounded-full shadow-lg z-10 hover:bg-gray-50 transition-all duration-300"
         >
-          <ChevronLeft className="w-6 h-6 text-gray-600" />
+          <ChevronLeft className="w-8 h-8 text-blue-600" />
         </button>
-        
-        <button 
+
+        <button
           onClick={nextSlide}
-          className="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 bg-white p-2 rounded-full shadow-lg z-10 hover:bg-gray-50"
+          className="absolute right-0 top-1/2 -translate-y-1/2 -mr-6 bg-white p-3 rounded-full shadow-lg z-10 hover:bg-gray-50 transition-all duration-300"
         >
-          <ChevronRight className="w-6 h-6 text-gray-600" />
+          <ChevronRight className="w-8 h-8 text-blue-600" />
         </button>
 
         <div className="overflow-hidden">
-          <div 
+          <div
             className="flex transition-transform duration-500 ease-out"
             style={{ transform: `translateX(-${activeIndex * (100 / cardsPerPage)}%)` }}
           >
             {specialties.map((specialty, index) => (
-              <div 
-                key={index}
-                className="w-full min-w-[33.333%] p-4"
-              >
-                <div 
-                  className={`bg-white border-2 ${specialty.borderColor} rounded-xl p-6 
+              <div key={index} className="w-full min-w-[33.333%] p-4">
+                <div
+                  className={`bg-white border-2 ${specialty.borderColor} rounded-2xl p-6 
                     cursor-pointer transition-all duration-300 
-                    ${selectedCard === index ? 'shadow-xl' : 'hover:shadow-lg'}
+                    ${selectedCard === index ? "shadow-2xl scale-105" : "hover:shadow-xl hover:scale-102"}
                     relative overflow-hidden`}
                   onClick={() => handleCardClick(index)}
                 >
                   {/* Card Header */}
                   <div className="mb-6">
                     <div className="flex items-start gap-4">
-                      <div className={`p-3 rounded-lg ${specialty.bgColor} ${specialty.color} border-2 ${specialty.borderColor}`}>
+                      <div
+                        className={`p-3 rounded-lg ${specialty.bgColor} ${specialty.color} border-2 ${specialty.borderColor}`}
+                      >
                         <specialty.icon className="w-8 h-8" />
                       </div>
                       <div>
-                        <h2 className={`text-xl font-bold mb-1 ${specialty.color}`}>
-                          {specialty.title}
-                        </h2>
-                        <p className="text-gray-600 text-sm">
-                          {specialty.description}
-                        </p>
+                        <h2 className={`text-xl font-bold mb-1 ${specialty.color}`}>{specialty.title}</h2>
+                        <p className="text-gray-600 text-sm">{specialty.description}</p>
                       </div>
                     </div>
                   </div>
@@ -246,13 +240,15 @@ const DoctorSpecialties = () => {
                   </div>
 
                   {/* Treatments */}
-                  <div className={`space-y-3 transition-all duration-300 
-                    ${selectedCard === index ? 'max-h-96' : 'max-h-20 overflow-hidden'}`}>
+                  <div
+                    className={`space-y-3 transition-all duration-300 
+                    ${selectedCard === index ? "max-h-96" : "max-h-20 overflow-hidden"}`}
+                  >
                     <h3 className="text-sm font-semibold text-gray-700">Common Treatments</h3>
                     <div className="flex flex-wrap gap-2">
                       {specialty.commonTreatments.map((treatment, idx) => (
-                        <span 
-                          key={idx} 
+                        <span
+                          key={idx}
                           className={`px-3 py-1 rounded-full text-xs font-medium
                             ${specialty.color} ${specialty.bgColor} border ${specialty.borderColor}`}
                         >
@@ -265,13 +261,13 @@ const DoctorSpecialties = () => {
                   {/* Action Buttons */}
                   {selectedCard === index && (
                     <div className="mt-4 space-y-2 pt-4 border-t border-gray-100">
-                      <button onClick={()=>navigate('/appointment')}
+                      <button
+                        onClick={() => navigate("/appointment")}
                         className={`w-full py-2 px-4 rounded-lg font-medium
                           ${specialty.color} ${specialty.bgColor} border-2 ${specialty.borderColor}`}
                       >
                         Book Appointment
                       </button>
-                      
                     </div>
                   )}
                 </div>
@@ -281,19 +277,20 @@ const DoctorSpecialties = () => {
         </div>
 
         {/* Pagination Dots */}
-        <div className="flex justify-center mt-6 gap-2">
+        <div className="flex justify-center mt-8 gap-3">
           {Array.from({ length: Math.ceil(specialties.length / cardsPerPage) }).map((_, idx) => (
             <button
               key={idx}
-              className={`w-2 h-2 rounded-full transition-all duration-300 
-                ${activeIndex / cardsPerPage === idx ? 'bg-gray-800 w-4' : 'bg-gray-300'}`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 
+                ${activeIndex / cardsPerPage === idx ? "bg-blue-600 w-6" : "bg-gray-300"}`}
               onClick={() => setActiveIndex(idx * cardsPerPage)}
             />
           ))}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DoctorSpecialties;
+export default DoctorSpecialties
+

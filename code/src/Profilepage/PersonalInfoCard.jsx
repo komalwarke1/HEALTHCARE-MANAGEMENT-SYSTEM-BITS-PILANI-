@@ -55,7 +55,7 @@ export const PersonalInfoCard = ({
   };
 
   return (
-    <Card className="w-full max-w-2xl">
+    <Card className="w-full max-w-3xl">
       <div className="p-6">
         <h3 className="text-2xl font-semibold mb-6 text-primary flex items-center">
           <User className="mr-2" />

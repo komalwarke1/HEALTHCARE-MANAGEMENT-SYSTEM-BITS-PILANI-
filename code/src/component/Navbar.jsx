@@ -1,47 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { User, Menu, X } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import ProfileButton from './ProfileButton';
-import { useAuth } from '../AuthContext';
+import React, { useState, useEffect } from "react"
+import { User, Menu, X } from "lucide-react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import ProfileButton from "./ProfileButton"
+import { useAuth } from "../AuthContext"
 
 const Navbar = () => {
-  const {isLogin} = useAuth() // Update 1
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const { isLogin } = useAuth()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const navigationItems = [
-    { id: 'home', label: 'Home', path: '/' },
-    { id: 'appointment', label: 'Book Appointment', path: '/appointment' },
-    { id: 'location', label: 'Location', path:'/LocationIQMap'  },
-    { id: 'consultation', label: 'Chat Consultation', path: '/Chatconsulation' }
-  ];
+    { id: "home", label: "Home", path: "/" },
+    { id: "appointment", label: "Book Appointment", path: "/appointment" },
+    { id: "location", label: "Location", path: "/LocationIQMap" },
+    { id: "consultation", label: "Chat Consultation", path: "/Chatconsulation" },
+  ]
 
   const handleLoginClick = () => {
-    navigate('/login');
-  };
+    navigate("/login")
+  }
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
-        setIsMobileMenuOpen(false);
+        setIsMobileMenuOpen(false)
       }
-    };
+    }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
+    <header className="bg-blue-50 shadow-lg sticky top-0 z-50">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo and Brand */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
-              <span className="text-orange-500 text-xl font-bold">M</span>
+            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+              <span className="text-blue-600 text-xl font-bold">M</span>
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-orange-500 to-orange-700 bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">
               MediCare
             </span>
           </Link>
@@ -50,7 +50,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-orange-500 hover:text-orange-600 hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-blue-600 hover:text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
               aria-expanded={isMobileMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
@@ -77,12 +77,14 @@ const Navbar = () => {
                   transition-all
                   duration-300
                   group
-                  ${location.pathname === path 
-                    ? 'text-white bg-gradient-to-r from-orange-500 to-orange-600' 
-                    : 'text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600'
+                  hover:scale-105
+                  ${
+                    location.pathname === path
+                      ? "text-white bg-gradient-to-r from-blue-600 to-green-500"
+                      : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-green-500"
                   }
                 `}
-                aria-current={location.pathname === path ? 'page' : null}
+                aria-current={location.pathname === path ? "page" : null}
               >
                 {label}
               </Link>
@@ -91,7 +93,7 @@ const Navbar = () => {
 
           {/* Login/Profile Button */}
           <div className="hidden md:flex items-center">
-            {isLogin ? ( // Update 2
+            {isLogin ? (
               <ProfileButton />
             ) : (
               <button
@@ -101,10 +103,10 @@ const Navbar = () => {
                   items-center
                   space-x-2
                   bg-gradient-to-r
-                  from-orange-500
-                  to-orange-600
-                  hover:from-orange-600
-                  hover:to-orange-700
+                  from-blue-600
+                  to-green-500
+                  hover:from-blue-700
+                  hover:to-green-600
                   text-white
                   px-6
                   py-2
@@ -113,9 +115,10 @@ const Navbar = () => {
                   font-medium
                   transition-all
                   duration-300
-                  hover:shadow-lg
+                  hover:shadow-xl
                   transform
-                  hover:-translate-y-0.5
+                  hover:-translate-y-1
+                  hover:scale-105
                 "
               >
                 <User size={18} />
@@ -136,26 +139,27 @@ const Navbar = () => {
                 to={path}
                 className={`
                   block px-3 py-2 rounded-md text-base font-medium
-                  ${location.pathname === path
-                    ? 'text-white bg-gradient-to-r from-orange-500 to-orange-600'
-                    : 'text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600'
+                  ${
+                    location.pathname === path
+                      ? "text-white bg-gradient-to-r from-blue-600 to-green-500"
+                      : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-blue-600 hover:to-green-500"
                   }
                 `}
                 onClick={() => setIsMobileMenuOpen(false)}
-                aria-current={location.pathname === path ? 'page' : null}
+                aria-current={location.pathname === path ? "page" : null}
               >
                 {label}
               </Link>
             ))}
-            {isLogin ? ( // Update 3
+            {isLogin ? (
               <div className="px-3 py-2">
                 <ProfileButton />
               </div>
             ) : (
               <button
                 onClick={() => {
-                  handleLoginClick();
-                  setIsMobileMenuOpen(false);
+                  handleLoginClick()
+                  setIsMobileMenuOpen(false)
                 }}
                 className="
                   w-full
@@ -164,10 +168,10 @@ const Navbar = () => {
                   justify-center
                   space-x-2
                   bg-gradient-to-r
-                  from-orange-500
-                  to-orange-600
-                  hover:from-orange-600
-                  hover:to-orange-700
+                  from-blue-600
+                  to-green-500
+                  hover:from-blue-700
+                  hover:to-green-600
                   text-white
                   px-6
                   py-2
@@ -176,7 +180,7 @@ const Navbar = () => {
                   font-medium
                   transition-all
                   duration-300
-                  hover:shadow-lg
+                  hover:shadow-xl
                 "
               >
                 <User size={18} />
@@ -187,8 +191,8 @@ const Navbar = () => {
         </div>
       )}
     </header>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
 

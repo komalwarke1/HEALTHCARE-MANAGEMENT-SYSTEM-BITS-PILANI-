@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react"
+import { motion } from "framer-motion"
 
 export default function ServiceCard({ id, name, icon, description, isSelected, onSelect }) {
   return (
@@ -8,9 +8,9 @@ export default function ServiceCard({ id, name, icon, description, isSelected, o
       whileTap={{ scale: 0.98 }}
       onClick={onSelect}
       className={`relative w-full p-6 rounded-2xl transition-all duration-200 ${
-        isSelected 
-          ? "bg-green-600 text-white shadow-inner" 
-          : "bg-white hover:bg-green-50 shadow-lg hover:shadow-xl border border-green-100"
+        isSelected
+          ? "bg-gradient-to-r from-blue-600 to-green-500 text-white shadow-inner"
+          : "bg-white hover:bg-blue-50 shadow-lg hover:shadow-xl border border-blue-100"
       }`}
     >
       <div className="flex flex-col items-center text-center gap-3">
@@ -19,5 +19,6 @@ export default function ServiceCard({ id, name, icon, description, isSelected, o
         <p className="text-sm opacity-90">{description}</p>
       </div>
     </motion.button>
-  );
+  )
 }
+

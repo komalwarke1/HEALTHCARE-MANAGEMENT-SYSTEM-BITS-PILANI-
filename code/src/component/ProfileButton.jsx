@@ -64,7 +64,7 @@ const ProfileButton = () => {
 
   return (
     <div className="relative">
-      {/* Simplified Profile Button */}
+      {/* Profile Button with Blue-Green Gradient */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="
@@ -72,11 +72,11 @@ const ProfileButton = () => {
           items-center 
           space-x-2
           bg-gradient-to-r
-          from-orange-50
-          to-orange-100
-          hover:from-orange-500
-          hover:to-orange-600
-          text-orange-600
+          from-cyan-50
+          to-emerald-50
+          hover:from-cyan-500
+          hover:to-emerald-500
+          text-cyan-600
           hover:text-white
           px-3 
           py-2
@@ -87,7 +87,7 @@ const ProfileButton = () => {
           transform
           hover:-translate-y-0.5
           border
-          border-orange-200
+          border-cyan-500
           hover:border-transparent
         "
       >
@@ -111,20 +111,20 @@ const ProfileButton = () => {
           overflow-hidden
           z-50
           border
-          border-orange-100
+          border-cyan-100
           transform
           transition-all
           duration-200
         ">
-          {/* Profile Header */}
-          <div className="p-4 bg-gradient-to-r from-orange-500 to-orange-600">
+          {/* Profile Header with Beautiful Gradient */}
+          <div className="p-4 bg-gradient-to-r from-cyan-500 to-emerald-500">
             <div className="flex items-center space-x-3">
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                <User size={24} className="text-orange-500" />
+                <User size={24} className="text-cyan-500" />
               </div>
               <div className="flex flex-col">
                 <span className="text-white font-semibold">{patientInfo.firstName+" "+patientInfo.lastName}</span>
-                <span className="text-orange-100 text-sm">Patient</span>
+                <span className="text-cyan-50 text-sm">Patient</span>
               </div>
             </div>
           </div>
@@ -133,7 +133,7 @@ const ProfileButton = () => {
             {menuSections.map((section, sectionIndex) => (
               <div key={sectionIndex} className="px-3">
                 <div className="px-3 py-2">
-                  <span className="text-xs font-semibold text-orange-500 uppercase tracking-wider">
+                  <span className="text-xs font-semibold text-cyan-500 uppercase tracking-wider">
                     {section.title}
                   </span>
                 </div>
@@ -152,8 +152,8 @@ const ProfileButton = () => {
                       rounded-xl
                       text-gray-700
                       hover:bg-gradient-to-r
-                      hover:from-orange-500
-                      hover:to-orange-600
+                      hover:from-cyan-500
+                      hover:to-emerald-500
                       hover:text-white
                       transition-all 
                       duration-300
@@ -164,8 +164,8 @@ const ProfileButton = () => {
                     <div className="
                       w-8 
                       h-8 
-                      bg-orange-50
-                      group-hover:bg-orange-400
+                      bg-cyan-50
+                      group-hover:bg-cyan-400
                       rounded-lg
                       flex 
                       items-center 
@@ -173,14 +173,14 @@ const ProfileButton = () => {
                       transition-colors
                       duration-300
                     ">
-                      <span className="text-orange-500 group-hover:text-white transition-colors duration-300">
+                      <span className="text-cyan-500 group-hover:text-white transition-colors duration-300">
                         {item.icon}
                       </span>
                     </div>
                     
                     <div className="flex flex-col items-start">
                       <span className="text-sm font-medium">{item.label}</span>
-                      <span className="text-xs text-gray-500 group-hover:text-orange-100">
+                      <span className="text-xs text-gray-500 group-hover:text-cyan-50">
                         {item.description}
                       </span>
                     </div>
@@ -189,7 +189,7 @@ const ProfileButton = () => {
                       <span className="
                         absolute
                         right-3
-                        bg-orange-500
+                        bg-cyan-500
                         text-white
                         text-xs
                         font-bold
@@ -197,7 +197,7 @@ const ProfileButton = () => {
                         py-0.5
                         rounded-full
                         group-hover:bg-white
-                        group-hover:text-orange-500
+                        group-hover:text-cyan-500
                       ">
                         {item.badge}
                       </span>
@@ -206,15 +206,14 @@ const ProfileButton = () => {
                 ))}
                 
                 {sectionIndex < menuSections.length - 1 && (
-                  <div className="my-2 border-b border-orange-100" />
+                  <div className="my-2 border-b border-cyan-100" />
                 )}
               </div>
             ))}
 
             {/* Logout Button */}
             <div className="px-3 mt-2">
-                <SignOutButton/>
-            
+              <SignOutButton />
             </div>
           </div>
         </div>

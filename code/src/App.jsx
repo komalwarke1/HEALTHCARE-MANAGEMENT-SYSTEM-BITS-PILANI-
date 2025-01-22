@@ -11,15 +11,23 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Make sure to include the CSS file
 import LocationIQMap from './pages/LocationIQMap'
 import { ProfileProvider } from './ProfileProvider'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import AirQualityDashboard from './healthtool/weather'
+import NutritionDisplay from './healthtool/NutritionInfo'
+import GymGuidePage from './healthtool/GymGuide'
+import BMICalculator from './healthtool/BMICalculator'
+
 
 
 
 
 function App() {
   const [count, setCount] = useState(0)
+  const queryClient = new QueryClient()
 
   return (
     <>
+    <QueryClientProvider client={queryClient}>
     <ProfileProvider>
       <BrowserRouter>
       
@@ -33,12 +41,16 @@ function App() {
         <Route path='/PatientProfile' element={<PatientProfile/>}/>
         <Route path='/Home' element={<Home/>} />
         <Route path='/LocationIQMap' element={<LocationIQMap/>}/>
+        <Route path='/bmi' element={<BMICalculator/>}/>
+        <Route path='/gymguide' element={<GymGuidePage/>}/>
+        <Route path='/nutrition' element={<NutritionDisplay/>}/>
+        <Route path='/weather' element={<AirQualityDashboard/>}/>
       </Routes>
       <ToastContainer/>
       
       </BrowserRouter>
     </ProfileProvider>
-     
+     </QueryClientProvider>
 
     </>
   )

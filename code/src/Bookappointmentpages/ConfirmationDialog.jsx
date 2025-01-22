@@ -1,10 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { format } from 'date-fns';
-import { CheckCircle2 } from 'lucide-react';
+import React from "react"
+import { motion } from "framer-motion"
+import { format } from "date-fns"
+import { CheckCircle2 } from "lucide-react"
 
 export default function ConfirmationDialog({ isOpen, onClose, appointmentDetails }) {
-  if (!isOpen || !appointmentDetails) return null;
+  if (!isOpen || !appointmentDetails) return null
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
@@ -12,11 +12,9 @@ export default function ConfirmationDialog({ isOpen, onClose, appointmentDetails
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
-        className="bg-white rounded-lg p-6 max-w-md w-full"
+        className="bg-gradient-to-br from-blue-50 to-green-50 rounded-lg p-6 max-w-md w-full"
       >
-        <h2 className="text-2xl font-bold text-center mb-4 text-green-800">
-          Appointment Confirmed!
-        </h2>
+        <h2 className="text-2xl font-bold text-center mb-4 text-green-800">Appointment Confirmed!</h2>
         <div className="flex flex-col items-center gap-4">
           <motion.div
             initial={{ scale: 0 }}
@@ -27,7 +25,7 @@ export default function ConfirmationDialog({ isOpen, onClose, appointmentDetails
           </motion.div>
           <div className="text-center space-y-2">
             <p className="font-semibold">{appointmentDetails.patientName}</p>
-            <p>{format(appointmentDetails.date, 'MMMM d, yyyy')}</p>
+            <p>{format(appointmentDetails.date, "MMMM d, yyyy")}</p>
             <p>{appointmentDetails.time}</p>
             <p className="font-medium">Doctor: {appointmentDetails.doctorName}</p>
             <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
@@ -37,11 +35,12 @@ export default function ConfirmationDialog({ isOpen, onClose, appointmentDetails
         </div>
         <button
           onClick={onClose}
-          className="mt-6 w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors"
+          className="mt-6 w-full bg-gradient-to-r from-blue-600 to-green-500 text-white py-2 rounded-lg hover:from-blue-700 hover:to-green-600 transition-colors"
         >
           Close
         </button>
       </motion.div>
     </div>
-  );
+  )
 }
+
