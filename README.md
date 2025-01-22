@@ -29,5 +29,5 @@ npm install
 npm run dev
 ```
 
-5. Access the application at [http://localhost:5173](http://localhost:5173)
+5. Access the application at [http://localhost:5173](http://localhost:5173) or any appropriate port.
 
