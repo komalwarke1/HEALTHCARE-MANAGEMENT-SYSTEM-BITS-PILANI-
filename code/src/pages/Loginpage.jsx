@@ -137,6 +137,20 @@ const Loginpage = () => {
                       <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
+                  
+                </div>
+                <div className=" pt-6 border-t border-gray-100">
+                  <div className="flex items-center justify-center gap-2 text-gray-500">
+                    
+                    <Link
+                      to="/Doctorlogin"
+                      className="text-blue-600 font-medium hover:text-blue-700 inline-flex items-center group"
+                    >
+                      Sign In as Doctor
+                      <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                  
                 </div>
               </div>
             </div>

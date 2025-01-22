@@ -16,6 +16,10 @@ import AirQualityDashboard from './healthtool/weather'
 import NutritionDisplay from './healthtool/NutritionInfo'
 import GymGuidePage from './healthtool/GymGuide'
 import BMICalculator from './healthtool/BMICalculator'
+import DoctorAppointments from './Doctor/DoctorAppointments'
+import DoctorProfile from './Doctor/DoctorProfile'
+import Doctorlogin from './Doctor/Doctorlogin'
+import Register from './assets/Register'
 
 
 
@@ -45,6 +49,10 @@ function App() {
         <Route path='/gymguide' element={<GymGuidePage/>}/>
         <Route path='/nutrition' element={<NutritionDisplay/>}/>
         <Route path='/weather' element={<AirQualityDashboard/>}/>
+        <Route path='/Doctorappoitment' element={<DoctorAppointments/>}/>
+        <Route path='/Doctorprofile' element={<DoctorProfile/>}/>
+        <Route path='/Doctorlogin' element={<Doctorlogin/>}/>
+        <Route path='/register' element={<Register/>}/>
       </Routes>
       <ToastContainer/>
       
