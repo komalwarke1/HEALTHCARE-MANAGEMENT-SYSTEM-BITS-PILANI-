@@ -1,6 +1,6 @@
 # Healthcare Management System
 
-Advanced healthcare management solution developed for BITS Pilani.
+Advanced healthcare management solution developed for BITS Pilani Postman API Hackathon 4.0.
 
 ## Installation
 
